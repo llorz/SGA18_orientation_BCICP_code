@@ -36,14 +36,9 @@ Note that here we used the **same** set of parameters to compute the self-symmet
 ### WKS (wave kernel signatures) initialization (on TOSCA (non-)isometric dataset)
 The script `Example_WKSini_Fig13` reproduces the Fig.13 of the paper and `Example_WKSini_Fig14` reproduces Fig.14: computing a map using +directOp/symmOp + BCICP.
 
-<img src="/figs/WKSeg_Iso.png" width="600">
-
-
-
+<img src="/figs/WKSeg_Iso.png" height="150">    <img src="/figs/WKSeg_nonIso.png" height="150">
 
 ### SEG (segmentation) initialization (on FAUST dataset)
-<img src="/figs/WKSeg_nonIso.png" width="600">
-
 
 Contact
 ------------------
