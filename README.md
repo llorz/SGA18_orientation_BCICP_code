@@ -21,7 +21,7 @@ Note that, for all the tests in the paper, **k1 = k2 = 50**, **numIters = 10**. 
 
 - For **FAUST** dataset, we set the parameters: **numTimes = 100, skipSize = 20, beta = 1e-4**.
 - For **TOSCA isometric** dataset, we set the parameters: **numTimes = 100, skipSize = 20, beta = 1**.
-- For **TOSCA non-isometric** dataset, we set the parameters: **numTimes = 50, skipSize = 5, beta = 1**.
+- For **TOSCA non-isometric** dataset, we set the parameters: **numTimes = 50, skipSize = 1, beta = 1**.
 
 Examples
 ------------------
@@ -44,4 +44,4 @@ The script `Example_SEGini.m` shows an example of non-symmetric segmentation ini
 
 Contact
 ------------------
-Please let us know (jing.ren@kaust.edu.sa) if you have any question regarding the algorithm/paper (ฅωฅ*) or you find any bugs in the implementation (ÒωÓױ). 
+Please let us know (jing.ren@kaust.edu.sa) if you have any question regarding the algorithms/paper (ฅωฅ*) or you find ~any~ a lot of bugs in the implementation (ÒωÓױ). 
