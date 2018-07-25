@@ -26,19 +26,21 @@ Note that, for all the tests in the paper, **k1 = k2 = 50**, **numIters = 10**. 
 Examples
 ------------------
 ### Self-symmetric maps
-The script `Example_selfSymm_Fig3` reproduces the Fig.3 of the paper: for a given shape, we use the orientation-reversing operator to compute its self-symmetric map. 
+The script `Example_selfSymm_Fig3.m` reproduces the Fig.3 of the paper: for a given shape, we use the orientation-reversing operator to compute its self-symmetric map. 
 
 <img src="/figs/eg_selfSymm.png" width="600">
 
 Note that here we used the **same** set of parameters to compute the self-symmetric maps. It would work much better if these parameters(especially **numTimes** and **beta**) are tuned per dataset. Alternatively, BCICP can be added to refine the self-symmetric maps as well.
 
 
-### WKS (wave kernel signatures) initialization (on TOSCA (non-)isometric dataset)
-The script `Example_WKSini_Fig13` reproduces the Fig.13 of the paper and `Example_WKSini_Fig14` reproduces Fig.14: computing a map using +directOp/symmOp + BCICP.
+### WKS (wave kernel signatures) initialization (on TOSCA dataset)
+The script `Example_WKSini_Fig13.m` reproduces the Fig.13 of the paper and `Example_WKSini_Fig14.m` reproduces Fig.14: computing a map using +directOp/symmOp + BCICP.
 
-<img src="/figs/WKSeg_Iso.png" height="150">    <img src="/figs/WKSeg_nonIso.png" height="150">
+<img src="/figs/WKSeg_Iso.png" height="150">                      <img src="/figs/WKSeg_nonIso.png" height="150">
 
 ### SEG (segmentation) initialization (on FAUST dataset)
+The script `Example_SEGini.m` shows an example of non-symmetric segmentation initialization (compare the ICP and BCICP refinement). For the segmentation part, please refer to the paper 'Robust Structure-based Shape Correspondence' by Yanir Kleiman and Maks Ovsjanikov (and code: https://github.com/hexygen/structure-aware-correspondence).
+
 
 Contact
 ------------------
