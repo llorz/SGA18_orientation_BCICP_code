@@ -44,4 +44,4 @@ The script `Example_SEGini.m` shows an example of non-symmetric segmentation ini
 
 Contact
 ------------------
-Please let us know (jing.ren@kaust.edu.sa) if you have any question regarding the algorithms/paper (ฅωฅ*) or you find ~any~ a lot of bugs in the implementation (ÒωÓױ). 
+Please let us know (jing.ren@kaust.edu.sa) if you have any question regarding the algorithms/paper (ฅωฅ*) or you find any bugs in the implementation (ÒωÓױ). 
