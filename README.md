@@ -1,2 +1,2 @@
 # Continuous and Orientation-preserving Correspondence via Functional Maps
-![Self-symmetric maps]('figs/eg_selfSymm.png')
+![Self-symmetric maps](/figs/eg_selfSymm.png)
