@@ -1,1 +1,1 @@
-# SGA18_orientation_BCICP
+# Continuous and Orientation-preserving Correspondence via Functional Maps
