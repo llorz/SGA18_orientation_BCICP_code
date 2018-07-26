@@ -42,7 +42,7 @@ Note that, for all the tests in the paper, **k1 = k2 = 50**, **numIters = 10**. 
 
 - For **FAUST** dataset, we set the parameters: **numTimes = 100, skipSize = 20, beta = 1e-4**.
 - For **TOSCA isometric** dataset, we set the parameters: **numTimes = 100, skipSize = 20, beta = 1**.
-- For **TOSCA non-isometric** dataset, we set the parameters: **numTimes = 50, skipSize = 1, beta = 1**.
+- For **TOSCA non-isometric** dataset, we set the parameters: **numTimes = 50, skipSize = 5, beta = 1**.
 
 Examples
 ------------------
@@ -56,6 +56,8 @@ Note that here we used the **same** set of parameters to compute the self-symmet
 
 ### WKS (wave kernel signatures) initialization (on TOSCA dataset)
 The script `Example_WKSini_Fig13.m` reproduces the Fig.13 of the paper and `Example_WKSini_Fig14.m` reproduces Fig.14: computing a map using +directOp/symmOp + BCICP.
+
+Note that for TOSCA non-isometric dataset, the isometry assupmtion fails. The orientation-preserving/reversing operator still works to some extent but much less effective than the cases of isometric shape pair. In this case, more Eigen-basis are needed to compute the WKS desriptors and more BCICP iterations are needed to refine the maps. 
 
 <img src="/figs/WKSeg_Iso.png" height="150"> &nbsp;&nbsp;&nbsp;&nbsp;    <img src="/figs/WKSeg_nonIso.png" height="150">
 
