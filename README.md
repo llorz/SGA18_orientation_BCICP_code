@@ -5,9 +5,29 @@ This is a complete implementation for the paper "Continuous and Orientation-pres
 
 Main algorithms
 ------------------
-- Compute a functional map with an orientation-preserving/reversing operator: `compute_fMap_regular_with_orientationOp(...)`
-- Refine the point-wise maps: `bcicp_refine(...)`
+- Compute a functional map with an orientation-preserving/reversing operator: 
+```
+C12 = compute_fMap_regular_with_orientationOp(S1,S2,B1,B2,Ev1,Ev2,fct1,fct2,type)
 
+% Input:
+%   S1: the source mesh with the new basis B1, and the corresponding eigenvalues Ev1 (k1 Eigen-functions)
+%   S2: the target mesh with the new basis B2, and the corresponding eigenvalues Ev2 (k2 Eigen-functions)
+%   fct1: the descriptors of shape S1
+%   fct2: the descriptors of shape S2
+%   type: 'direct' or 'symmetric' (call the orientation preserving/reversing operator)
+% Output:
+%   C12: a functional map from S1 -> S2 (k2-by-k1 matrix)
+```
+- Refine the point-wise maps: 
+```
+[T21, T12] = bcicp_refine(S1,S2,B1,B2,T21_ini,T12_ini,num_iter)
+% Input: 
+%   S1/S2 with corresponding Eigen-functions B1/B2
+%   Initial point-wise maps from both directions: T12_ini: S1 -> S2 and T21_ini: S2 -> S1
+%   num_iter: number of iterations to run BCICP refinement
+% Output:
+%   T12, T21: the refined point-wise maps with better accuracy, smoothness, bijectivity and coverage
+```
 
 Main parameters
 ------------------
@@ -39,7 +59,7 @@ The script `Example_WKSini_Fig13.m` reproduces the Fig.13 of the paper and `Exam
 <img src="/figs/WKSeg_Iso.png" height="150"> &nbsp;&nbsp;&nbsp;&nbsp;    <img src="/figs/WKSeg_nonIso.png" height="150">
 
 ### SEG (segmentation) initialization (on FAUST dataset)
-The script `Example_SEGini.m` shows an example of non-symmetric segmentation initialization (compare the ICP and BCICP refinement). For the segmentation part, please refer to the paper 'Robust Structure-based Shape Correspondence' by Yanir Kleiman and Maks Ovsjanikov (and code: https://github.com/hexygen/structure-aware-correspondence).
+The script `Example_SEGini.m` shows an example of non-symmetric segmentation initialization (compare the ICP and BCICP refinement). For the segmentation part, please refer to the paper "Robust Structure-based Shape Correspondence" by Yanir Kleiman and Maks Ovsjanikov (and code: https://github.com/hexygen/structure-aware-correspondence).
 
 
 Contact
