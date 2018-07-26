@@ -49,7 +49,7 @@ Examples
 ### Self-symmetric maps
 The script `Example_selfSymm_Fig3.m` reproduces the Fig.3 of the paper: for a given shape, we use the orientation-reversing operator to compute its self-symmetric map. 
 
-<img src="/figs/eg_selfSymm.png" width="600">
+<img align="center"  src="/figs/eg_selfSymm.png" width="600">
 
 Note that here we used the **same** set of parameters to compute the self-symmetric maps. It would work much better if these parameters(especially **numTimes** and **beta**) are tuned per dataset. Alternatively, BCICP can be added to refine the self-symmetric maps as well.
 
