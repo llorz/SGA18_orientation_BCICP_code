@@ -21,6 +21,7 @@ C12 = compute_fMap_regular_with_orientationOp(S1,S2,B1,B2,Ev1,Ev2,fct1,fct2,type
 - Refine the point-wise maps: 
 ```
 [T21, T12] = bcicp_refine(S1,S2,B1,B2,T21_ini,T12_ini,num_iter)
+
 % Input: 
 %   S1/S2 with corresponding Eigen-functions B1/B2
 %   Initial point-wise maps from both directions: T12_ini: S1 -> S2 and T21_ini: S2 -> S1
