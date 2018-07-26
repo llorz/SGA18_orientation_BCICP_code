@@ -59,7 +59,7 @@ The script `Example_WKSini_Fig13.m` reproduces the Fig.13 of the paper and `Exam
 
 Note that for TOSCA non-isometric dataset, the isometry assupmtion fails. The orientation-preserving/reversing operator still works to some extent but much less effective than the cases of isometric shape pair. In this case, more Eigen-basis are needed to compute the WKS desriptors and more BCICP iterations are needed to refine the maps. 
 
-<img src="/figs/WKSeg_Iso.png" height="150"> &nbsp;&nbsp;&nbsp;&nbsp;    <img src="/figs/WKSeg_nonIso.png" height="150">
+<img src="/figs/WKSeg_Iso.png" height="150"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <img src="/figs/WKSeg_nonIso.png" height="150">
 
 ### SEG (segmentation) initialization (on FAUST dataset)
 The script `Example_SEGini.m` shows an example of non-symmetric segmentation initialization (compare the ICP and BCICP refinement). For the segmentation part, please refer to the paper "Robust Structure-based Shape Correspondence" by Yanir Kleiman and Maks Ovsjanikov (and code: https://github.com/hexygen/structure-aware-correspondence).
