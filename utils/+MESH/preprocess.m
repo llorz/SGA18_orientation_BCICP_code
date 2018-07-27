@@ -33,7 +33,7 @@ save_filename = [param.cacheDir,S.name,'.mat'];
 if exist(save_filename,'file')
     fprintf('Loading from the cache...'); tic;
     S = load(save_filename);
-    t = toc; fprintf('done: %.4f\n',t);
+    t = toc; fprintf('done: %.4fs\n',t);
 else
     % compute the Laplacian basis
     if param.IfComputeLB

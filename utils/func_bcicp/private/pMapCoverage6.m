@@ -1,4 +1,4 @@
-function T21_new = pMapCoverage(T21,S2,S1,T12_new)
+function T21_new = pMapCoverage6(T21,S2,S1,T12_new)
 n1 = S1.nv; n2 = S2.nv;
 dist2 = compute_mesh_dist_matrix(S2);
 get_mat_entry = @(M,I,J) M(sub2ind(size(M),I,J));

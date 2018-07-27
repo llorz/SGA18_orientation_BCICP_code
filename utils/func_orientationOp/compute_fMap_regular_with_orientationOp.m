@@ -12,7 +12,7 @@
 function [C12] = compute_fMap_regular_with_orientationOp(S1,S2,B1,B2,Ev1,Ev2,fct_src,fct_tar,type,para)
 a = 1e-1; % Descriptors preservation
 b = 1;    % Commutativity with descriptors
-c = 1e-1; % 1e-3 Commutativity with Laplacian
+c = 1e-1; % 1e-3 Commutativity with Laplacian (cat c = 1e-1, alpha = 20
 d = 0;
 beta = 1;
 numEigsSrc = size(B1,2); numEigsTar = size(B2,2);
@@ -27,7 +27,7 @@ if nargin > 9
 end
 %--------------------------------------------------------------------------
 % Descriptors
-assert(size(fct_src,2)==size(fct_tar,2),'The number of descriptors does not match.');
+assert(size(fct_src,2)==size(fct_tar,2));
 % Normalization
 no = sqrt(diag(fct_src'*S1.A*fct_src))';
 fct_src = fct_src ./ repmat(no, [S1.nv,1]);
@@ -49,9 +49,9 @@ compute_all_OrientationOp = @(S,B,fct) ...
     cellfun(@(f) OrientationOp(S,B,f),mat2cell(fct,size(fct,1),ones(size(fct,2),1)),'un',0);
 F11_all = compute_all_OrientationOp(S1,B1,fct_src);
 F22_all = compute_all_OrientationOp(S2,B2,fct_tar);
-%% all energy terms and the corresponding gradients
+%% all energy terms and the corresponding gradient
 % C: Src -> Tar
-Dlb = (repmat(Ev2, [1,numEigsSrc]) - repmat(Ev1', [numEigsTar,1])).^2;
+Dlb = (repmat(Ev1, [1,numEigsSrc]) - repmat(Ev2', [numEigsTar,1])).^2;
 Dlb = Dlb/norm(Dlb, 'fro')^2;
 
 % orientation term
@@ -78,15 +78,16 @@ F_lb = zeros(numEigsTar*numEigsSrc, 1); F_lb(1) = constFct(1);
 
 % set up the alpha s.t. the descriptor_preservation and
 % orientation_preservation term have the same scale
-C = eye(numEigsTar,numEigsSrc); % identity initialization
+C = mat_projection(eye(numEigsTar,numEigsSrc)); % identity initialization
 
-if funCommDesp(C) ~= 0
+if funCommDesp(C) ~= 0    
     eval_direct = @(C) funCommDesp(C)/funOrient_direct(C);
     eval_symm = @(C) funCommDesp(C)/funOrient_symm(C);
 else
     eval_direct = @(C) 1/funOrient_direct(C);
     eval_symm = @(C) 1/funOrient_symm(C);
 end
+
 
 switch type
     case 'direct'
@@ -111,4 +112,14 @@ options.verbose = 1;
 fprintf('Optimizing the functional map with %s operator...',type);tic;
 C12 = reshape(minConf_PQN(funObj, F_lb, funProj, options), [numEigsTar,numEigsSrc]);
 t = toc; fprintf('done %.4fs.\n', t);
+end
+
+
+function [C,v,eval] = mat_projection(W)
+n1 = size(W,1);
+n2 = size(W,2);
+[s,v,d] = svd(full(W));
+C = s*eye(n1,n2)*d';
+v = diag(v);
+eval = [range(v),mean(v),var(v)];
 end

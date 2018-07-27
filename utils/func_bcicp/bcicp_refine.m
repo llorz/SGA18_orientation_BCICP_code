@@ -3,14 +3,23 @@ function [T21, T12] = bcicp_refine(S1,S2,B1,B2,T21_ini, T12_ini,num_iter)
 
 compute_coverage = @(T) length(unique(T))/length(T);
 T12 = T12_ini; T21 = T21_ini;
+
+% smooth the map in functional space
+for iter = 1:5
+    C12 = B2\B1(T21,:);
+    C21 = B1\B2(T12,:);
+  
+    T12 = knnsearch(B2*C21', B1);
+    T21 = knnsearch(B1*C12', B2);
+end
+
 if compute_coverage(T12 < 0.5) && compute_coverage(T21 < 0.5)
     [T21, T12] = refine_pMap(T21,T12,S1,S2,4);
 end
+
 for iter = 1:num_iter
     C12 = B2\B1(T21,:);
     C21 = B1\B2(T12,:);
-    C12 = C21'*mat_projection(C21*C12);
-    C21 = C12'*mat_projection(C12*C21);
     
     Y1 = [B1*C12',B1];
     Y2 = [B2, B2*C21'];

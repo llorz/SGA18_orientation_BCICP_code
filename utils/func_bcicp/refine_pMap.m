@@ -5,6 +5,8 @@ if nargin < 5, num_iter = 4; end
 compute_coverage = @(T) length(unique(T))/length(T);
 T12_new = T12_ini;
 T21_new = T21_ini;
+n1 = S1.nv;
+n2 = S2.nv;
 %%
 T12_new = pMapCoverage_smooth_many2one(T12_new,S1,S2);
 T21_new = pMapCoverage_smooth_many2one(T21_new,S2,S1);

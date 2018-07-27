@@ -10,18 +10,13 @@ mesh_dir = 'data/selfSymm/';
 addpath(genpath('utils/'));
 %% parameters
 k = 10; % the number of basis used
-t = 1; % the time-scale to compute WKS descriptors
+numTimes = 1; % the time-scale to compute WKS descriptors
 para.beta = 1; % the weight to control the orientation term (alpha_4)
 
 % options to preprocess
 mesh_options = {'IfComputeLB',true,'numEigs',k,... % compute k LB basis
     'IfComputeNormals',true,... % compute vtx normals for orientation term
     'IfComputeGeoDist',false};
-
-% Note: Here we use the **same** set of parameters to compute the
-% self-symmetric maps. It would work much better if these parameters
-% (especially t and beta) are tuned per dataset. Alternatively, you can use
-% BCICP to refine the self-symmetric maps as well.
 %%
 test_meshes = {'baby', 'homer', 'gorilla03', 'mesh025', '393', '177', '74'};
 
@@ -29,7 +24,7 @@ for i = 1:length(test_meshes)
     s_name = test_meshes{i};
     S = MESH.preprocess([mesh_dir,s_name],mesh_options{:}); % preprocess the mesh
     B = S.evecs(:,1:k); Ev = S.evals(1:k);
-    fct = waveKernelSignature(B, Ev, S.A, t); % compute the WKS descriptors
+    fct = waveKernelSignature(B, Ev, S.A, numTimes); % compute the WKS descriptors
     [C_symm] = compute_fMap_regular_with_orientationOp(S,S,B,B,Ev,Ev,fct,fct,'symmetric',para); % use orientation-reversing operator
     C_symm = fMAP.icp_refine(B,B,C_symm,5);  % add 5 iteration of ICP
     T_symm = fMAP.fMap2pMap(B,B,C_symm); % convert to pointwise map
