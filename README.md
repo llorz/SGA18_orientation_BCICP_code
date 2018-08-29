@@ -55,7 +55,7 @@ Note that here we used the **same** set of parameters to compute the self-symmet
 
 
 ### WKS (wave kernel signatures) initialization (on TOSCA dataset)
-The script `Example_WKSini_Fig13.m` reproduces the Fig.13 of the paper and `Example_WKSini_Fig14.m` reproduces Fig.14: computing a map using +directOp/symmOp + BCICP.
+The script `Example_WKSini_Fig14.m` and `Example_WKSini_Fig15.m` reproduces Fig.14-15 of the paper: computing a map using +directOp/symmOp + BCICP.
 
 Note that for TOSCA non-isometric dataset, the isometry assupmtion fails. The orientation-preserving/reversing operator still works to some extent but much less effective than the cases of isometric shape pair. In this case, more Eigen-basis are needed to compute the WKS desriptors and more BCICP iterations are needed to refine the maps. 
 
