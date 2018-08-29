@@ -20,6 +20,9 @@ end
 for iter = 1:num_iter
     C12 = B2\B1(T21,:);
     C21 = B1\B2(T12,:);
+    % the projection step can be modified/removed
+    C12 = C12*mat_projection(C21*C12);
+    C21 = C21*mat_projection(C12*C21);
     
     Y1 = [B1*C12',B1];
     Y2 = [B2, B2*C21'];

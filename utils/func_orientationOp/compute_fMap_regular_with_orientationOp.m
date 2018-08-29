@@ -14,7 +14,7 @@ a = 1e-1; % Descriptors preservation
 b = 1;    % Commutativity with descriptors
 c = 1e-1; % 1e-3 Commutativity with Laplacian (cat c = 1e-1, alpha = 20
 d = 0;
-beta = 1;
+beta = 1e-1;
 numEigsSrc = size(B1,2); numEigsTar = size(B2,2);
 if nargin < 9, type = 'direct'; end
 if nargin > 9
@@ -80,14 +80,13 @@ F_lb = zeros(numEigsTar*numEigsSrc, 1); F_lb(1) = constFct(1);
 % orientation_preservation term have the same scale
 C = mat_projection(eye(numEigsTar,numEigsSrc)); % identity initialization
 
-if funCommDesp(C) ~= 0    
-    eval_direct = @(C) funCommDesp(C)/funOrient_direct(C);
-    eval_symm = @(C) funCommDesp(C)/funOrient_symm(C);
+if funCommDesp(C) ~= 0
+    eval_direct = @(C) (a*funDesp(C) + b*funCommDesp(C) + c*funCommLB(C))/ funOrient_direct(C);
+    eval_symm = @(C) (a*funDesp(C) + b*funCommDesp(C) + c*funCommLB(C))/ funOrient_symm(C);
 else
     eval_direct = @(C) 1/funOrient_direct(C);
     eval_symm = @(C) 1/funOrient_symm(C);
 end
-
 
 switch type
     case 'direct'

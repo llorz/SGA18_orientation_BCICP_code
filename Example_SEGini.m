@@ -4,7 +4,7 @@ addpath(genpath('utils/'))
 k1 = 50; k2 = 50; % #LB on source and target shape
 numTimes = 100; % time-scale parameter to compute WKS descriptors
 skipSize = 20; % skip size of the computed WKS descriptors - to save runtime
-para.beta = 1e-4; % weight for the orientataion term
+para.beta = 1e-1; % weight for the orientataion term
 num_iters = 3; % num_iters for BCICP (in the paper we used 10)
 plotOptions = {'IfShowCoverage',true,'cameraPos',[0,90],'OverlayAxis','y'};
 %%
@@ -31,6 +31,7 @@ B2 = S2.evecs(:,1:k2); Ev2 = S2.evals(1:k2);
 % compute the structure-based segmentation
 [seg1,seg2] = MESH.SEG.compute_shape_pair_segmentation(S1,S2,'cacheDir',cache_dir,...
     'numComponentsRange',[8,7]);
+% ignore the unmatched regions (with label 0)
 unique_seg_id = setdiff(intersect(unique(seg1),unique(seg2)),0);
 get_region = @(seg_id) cellfun(@(s_id) find(seg_id == s_id),num2cell(unique_seg_id),'UniformOutput',false);
 
@@ -47,7 +48,6 @@ T12_icp = fMAP.fMap2pMap(B2,B1,C21);
 
 C12 = fMAP.icp_refine(B1,B2,C12_ini,num_iters);
 T21_icp = fMAP.fMap2pMap(B1,B2,C12);
-
 %% use BCICP for refinement
 [T21_new, T12_new] =  bcicp_refine(S1,S2,B1,B2,T21_ini, T12_ini, num_iters);
 %% visualize the maps

@@ -1,27 +1,27 @@
 clc; close all; clear;
 addpath(genpath('utils/'))
-%% parameters for TOSCA-nonIsometric
+%% parameters for TOSCA-Isometric
 k1 = 50; k2 = 50; % #LB on source and target shape
-numTimes = 50; % time-scale parameter to compute WKS descriptors
-skipSize = 5; % skip size of the computed WKS descriptors - to save runtime
-para.beta = 1; % weight for the orientataion term
-num_iters = 10; % num_iters for BCICP 
+numTimes = 100; % time-scale parameter to compute WKS descriptors
+skipSize = 20; % skip size of the computed WKS descriptors - to save runtime
+para.beta = 1e-1; % weight for the orientataion term
+num_iters = 3; % num_iters for BCICP (in the paper we used 10)
 plotOptions = {'IfShowCoverage',false,'cameraPos',[-30,10]};
 %%
-mesh_dir = 'data/TOSCA_nonIsometric/';
-s1_name = '8_gorilla_01';
-s2_name = '8_man_02';
+mesh_dir = 'data/TOSCA_Isometric/';
+s1_name = 'cat0';
+s2_name = 'cat2';
 
 cache_dir = [mesh_dir,'cache/'];
 if ~isdir(cache_dir), mkdir(cache_dir); end;
 %% preprocess the mesh or load from the cache
 S1 = MESH.preprocess([mesh_dir,s1_name], 'cacheDir',cache_dir,...
-    'IfComputeLB',true, 'numEigs',250,...
+    'IfComputeLB',true, 'numEigs',k1,...
     'IfComputeGeoDist',true,...
     'IfComputeNormals',true);
 
 S2 = MESH.preprocess([mesh_dir,s2_name], 'cacheDir',cache_dir,...
-    'IfComputeLB',true, 'numEigs',250,...
+    'IfComputeLB',true, 'numEigs',k2,...
     'IfComputeGeoDist',true,...
     'IfComputeNormals',true);
 
@@ -29,16 +29,10 @@ S2 = MESH.preprocess([mesh_dir,s2_name], 'cacheDir',cache_dir,...
 B1 = S1.evecs(:,1:k1); Ev1 = S1.evals(1:k1);
 B2 = S2.evecs(:,1:k2); Ev2 = S2.evals(1:k2);
 
-fct1 = waveKernelSignature(S1.evecs, S1.evals, S1.A, numTimes);
-fct2 = waveKernelSignature(S2.evecs, S2.evals, S2.A, numTimes);
+fct1 = waveKernelSignature(B1, Ev1, S1.A, numTimes);
+fct2 = waveKernelSignature(B2, Ev2, S2.A, numTimes);
 fct1 = fct1(:,1:skipSize:end);
 fct2 = fct2(:,1:skipSize:end);
-% Note that here is sligtly different from the Example_WKSini_Fig13:
-% we used more Eigenvectors to compute the WKS descriptors
-% because for non-isometric shape pairs, the orientation term might not
-% work well (since the isometry assumption fails). Therefore we need more
-% accurate WKS descriptors to make the initialization better, and use more
-% BCICP iterations to refine the maps.
 %% Step 01: using orientation term to compute the initial direct/symm maps
 % with the direct operator
 [C12_direct] = compute_fMap_regular_with_orientationOp(S1,S2,B1,B2,Ev1,Ev2,fct1,fct2,'direct',para);

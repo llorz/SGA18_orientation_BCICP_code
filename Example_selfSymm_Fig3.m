@@ -16,10 +16,9 @@ para.beta = 1; % the weight to control the orientation term (alpha_4)
 % options to preprocess
 mesh_options = {'IfComputeLB',true,'numEigs',k,... % compute k LB basis
     'IfComputeNormals',true,... % compute vtx normals for orientation term
-    'IfComputeGeoDist',false};
+    'IfComputeGeoDist',false};  % do not compute the geodesic distance matrix
 %%
 test_meshes = {'baby', 'homer', 'gorilla03', 'mesh025', '393', '177', '74'};
-
 for i = 1:length(test_meshes)
     s_name = test_meshes{i};
     S = MESH.preprocess([mesh_dir,s_name],mesh_options{:}); % preprocess the mesh
