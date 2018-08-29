@@ -32,17 +32,17 @@ C12 = compute_fMap_regular_with_orientationOp(S1,S2,B1,B2,Ev1,Ev2,fct1,fct2,type
 
 Main parameters
 ------------------
-- **k1(k2)**: the number of Eigen-basis used of mesh S1(S2)
 - **numTimes**: the time-scale parameter to compute the WKS descriptors
 - **skipSize**: the skip size of the computed WKS descriptors to save runtime
+- **k1(k2)**: the number of Eigen-basis used of mesh S1(S2)
 - **beta**: the weight for the orientation-preserving/reversing term
 - **numIters**: the number of iterations for the BCICP refinement step
 
-Note that, for all the tests in the paper, **k1 = k2 = 50**, **numIters = 10**. The rest three parameters were (sloppily) tuned on a ramdon shape pair in a dataset, then applied to all the rest shape pairs in this collection. Our choices of parameters of each tested datasets are (also specified in the example scripts):
+Note that, for all the tests in the paper, **k1 = k2 = 50**, **numIters = 10** and **beta = 0.1**. The rest two parameters for **computing the WKS descriptors** were (sloppily) tuned on a ramdon shape pair in a dataset, then applied to all the rest shape pairs in this collection. Our choices of parameters of each tested datasets are (also specified in the example scripts):
 
-- For **FAUST** dataset, we set the parameters: **numTimes = 100, skipSize = 20, beta = 1e-4**.
-- For **TOSCA isometric** dataset, we set the parameters: **numTimes = 100, skipSize = 20, beta = 1**.
-- For **TOSCA non-isometric** dataset, we set the parameters: **numTimes = 50, skipSize = 5, beta = 1**.
+- For **FAUST** dataset, we set the parameters: **numTimes = 100, skipSize = 10**.
+- For **TOSCA isometric** dataset, we set the parameters: **numTimes = 100, skipSize = 20**.
+- For **TOSCA non-isometric** dataset, we set the parameters: **numTimes = 50, skipSize = 10**.
 
 Examples
 ------------------
