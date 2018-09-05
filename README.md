@@ -51,7 +51,7 @@ The script `Example_selfSymm_Fig3.m` reproduces the Fig.3 of the paper: for a gi
 
 <img align="center"  src="/figs/eg_selfSymm.png" width="600">
 
-Note that here we used the **same** set of parameters to compute the self-symmetric maps. It would work much better if these parameters(especially **numTimes** and **beta**) are tuned per dataset. Alternatively, BCICP can be added to refine the self-symmetric maps as well.
+Note that here we used the **same** set of parameters to compute the self-symmetric maps. It would work much better if these parameters (especially **numTimes** and **beta**) are tuned per dataset. Moreover, BCICP can be added to refine the self-symmetric maps as well.
 
 
 ### WKS (wave kernel signatures) initialization (on TOSCA dataset)
