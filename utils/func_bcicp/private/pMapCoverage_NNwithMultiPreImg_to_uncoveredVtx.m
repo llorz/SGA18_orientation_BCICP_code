@@ -1,4 +1,3 @@
-% 2
 % T21: S2 -> S1 (X2 -> X1)
 % T12: S1 -> S2 (X1 -> X2)
 % for an uncovered vertex v on shape S1, find the nearest neighbor w of T12(v)

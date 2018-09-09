@@ -1,4 +1,3 @@
-%tmp_improve_fMap_bijectivity7
 % Given T21: S2 -> S1 and T12, we want to use T12 to fix T21
 % check if T21 of the uncovered vtx of T21 on S1 are mapped to some vtx
 % with multiple pre-images from T21, if so, it's safe to remap those vtx.

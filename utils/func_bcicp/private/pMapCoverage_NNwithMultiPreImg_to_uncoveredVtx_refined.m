@@ -1,4 +1,3 @@
-% 4
 % for an uncovered vertex v on shape S1 wiht neighbors neigh (on shape S1)
 % if some of the neighbors have multiple preimages, search among those
 % preimages, and find the nearest neighbor w of T2(v),then it's safe to set
