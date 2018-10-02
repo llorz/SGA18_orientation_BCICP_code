@@ -51,8 +51,12 @@ F11_all = compute_all_OrientationOp(S1,B1,fct_src);
 F22_all = compute_all_OrientationOp(S2,B2,fct_tar);
 %% all energy terms and the corresponding gradient
 % C: Src -> Tar
-Dlb = (repmat(Ev1, [1,numEigsSrc]) - repmat(Ev2', [numEigsTar,1])).^2;
-Dlb = Dlb/norm(Dlb, 'fro')^2;
+% Dlb = (repmat(Ev1, [1,numEigsSrc]) - repmat(Ev2', [numEigsTar,1])).^2;
+% Dlb = Dlb/norm(Dlb, 'fro')^2; % old
+
+Dlb = (repmat(Ev2/sum(Ev2)*sum(Ev1), [1,numEigsSrc]) - repmat(Ev1'/sum(Ev1)*sum(Ev2), [numEigsTar,1])).^2;
+Dlb = Dlb/norm(Dlb, 'fro')^2; % test0918
+
 
 % orientation term
 funOrient_direct = @(C) sum(cellfun(@(F11,F22) 0.5*norm(C*F11 - F22*C, 'fro')^2,F11_all, F22_all));
