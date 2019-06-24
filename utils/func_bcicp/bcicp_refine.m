@@ -13,7 +13,7 @@ for iter = 1:5
     T21 = knnsearch(B1*C12', B2);
 end
 
-if compute_coverage(T12 < 0.5) && compute_coverage(T21 < 0.5)
+if compute_coverage(T12) < 0.5 && compute_coverage(T21) < 0.5
     [T21, T12] = refine_pMap(T21,T12,S1,S2,4);
 end
 
@@ -31,7 +31,7 @@ for iter = 1:num_iter
     [~,T12] = min(d2,[],2);
     [~,T21] = min(d2',[],2);
     
-    if compute_coverage(T12 < 0.5) && compute_coverage(T21 < 0.5)
+    if compute_coverage(T12) < 0.5 && compute_coverage(T21) < 0.5
         [T21, T12] = refine_pMap(T21,T12,S1,S2,4);
     end
     
@@ -48,7 +48,7 @@ for iter = 1:num_iter
     [~,T21] = min(d2,[],2);
     [~,T12] = min(d2',[],2);
     
-    if compute_coverage(T12 < 0.5) && compute_coverage(T21 < 0.5)
+    if compute_coverage(T12) < 0.5 && compute_coverage(T21) < 0.5
         [T21, T12] = refine_pMap(T21,T12,S1,S2,4);
     end
     
