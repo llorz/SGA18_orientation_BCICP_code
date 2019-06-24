@@ -13,9 +13,8 @@ for iter = 1:5
     T21 = knnsearch(B1*C12', B2);
 end
 
-if compute_coverage(T12) < 0.5 && compute_coverage(T21) < 0.5
-    [T21, T12] = refine_pMap(T21,T12,S1,S2,4);
-end
+[T21, T12] = refine_pMap(T21,T12,S1,S2,4);
+
 
 for iter = 1:num_iter
     C12 = B2\B1(T21,:);
@@ -31,9 +30,8 @@ for iter = 1:num_iter
     [~,T12] = min(d2,[],2);
     [~,T21] = min(d2',[],2);
     
-    if compute_coverage(T12) < 0.5 && compute_coverage(T21) < 0.5
-        [T21, T12] = refine_pMap(T21,T12,S1,S2,4);
-    end
+    [T21, T12] = refine_pMap(T21,T12,S1,S2,4);
+    
     
     % bijective ICP
     C1 = B1\B1(T21(T12),:);
@@ -48,9 +46,9 @@ for iter = 1:num_iter
     [~,T21] = min(d2,[],2);
     [~,T12] = min(d2',[],2);
     
-    if compute_coverage(T12) < 0.5 && compute_coverage(T21) < 0.5
-        [T21, T12] = refine_pMap(T21,T12,S1,S2,4);
-    end
+
+    [T21, T12] = refine_pMap(T21,T12,S1,S2,4);
+
     
     % smooth the complete map: slow if #vtx is large!
     if S1.nv <= 2e3 && S2.nv <= 2e3
