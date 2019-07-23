@@ -2,6 +2,13 @@
 
 This is a complete implementation for the paper "Continuous and Orientation-preserving Correspondence via Functinal Maps" by Jing Ren, Adrien Poulenard, Peter Wonka and Maks Ovsjanikov.
 
+Update (2019 July)
+------------------
+Our method implicitly provides a tool for **symmetry detection**, for example, it is used as a baseline in the following paper:
+- ["Dense Point-to-Point Correspondences Between Genus-Zero Shapes"](http://www.cs.jhu.edu/~misha/MyPapers/SGP19.pdf) by Sing Chun Lee and Misha Kazhdan, Figure 6
+- ["ZoomOut: Spectral Upsampling for Efficient Shape Correspondence"](https://arxiv.org/abs/1904.07865) by Melzi et al, Figure 9
+
+If you would like to use our method for self-symmetry detection, please check the code ```run_selfSymm```, where the default parameters are tested on the following datasets: FAUST, SCAPE, TOSCA, and SHREC19 (and worked reasonably). Please let us know if you have problems/questions of the code or parameter-tuning. 
 
 Main algorithms
 ------------------
